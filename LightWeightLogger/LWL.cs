@@ -5,8 +5,11 @@ namespace LightWeightLogger;
 public class Logger {
     private readonly string _fileName;
 
-    public Logger(string path, string logname)
+    public Logger(string logname, string path)
     {
+        if (!path.EndsWith("\\"))
+            path += "\\";
+
         _fileName = !string.IsNullOrEmpty(path) ? $"{path}{logname}_log_{DateTime.Now.ToString("ddMMyyyy")}.txt" : "";
     }
 
