@@ -24,12 +24,14 @@ public class Logger {
         LogToFile(logEntry);
         Console.WriteLine(logEntry);
     }
+
     public void LogError(string message)
     {
         var logEntry = $"{DateTime.Now} - ERROR: {message}";
         LogToFile(logEntry);
         Console.WriteLine(logEntry);
     }
+    
     public void LogError(string message, Exception ex)
     {
         var logEntry = $"{DateTime.Now} - ERROR: {message}\r\n{ex}";
