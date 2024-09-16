@@ -10,7 +10,7 @@ public class Logger {
         if (!path.EndsWith("\\"))
             path += "\\";
 
-        _fileName = !string.IsNullOrEmpty(path) ? $"{path}{logname}_log_{DateTime.Now.ToString("ddMMyyyy")}.txt" : "";
+        _fileName = !string.IsNullOrEmpty(path) ? $"{path}{logname}_log_{DateTime.Now:ddMMyyyy}.txt" : "";
     }
 
     public void LogInformation(object message)
