@@ -49,10 +49,10 @@ public class Logger : ILogger {
         if (string.IsNullOrWhiteSpace(message) || string.IsNullOrWhiteSpace(_fileName))
             return;
 
-        var messageSpan = new ReadOnlySpan<byte>(Encoding.ASCII.GetBytes($"{message}\r\n"));
+        var buffer = new ReadOnlySpan<byte>(Encoding.ASCII.GetBytes($"{message}\r\n"));
         var fileMode = File.Exists(_fileName) ? FileMode.Append : FileMode.Create;
 
         using var fs = new FileStream(_fileName, fileMode, FileAccess.Write, FileShare.ReadWrite);
-        fs.Write(messageSpan);
+        fs.Write(buffer);
     }
 }
