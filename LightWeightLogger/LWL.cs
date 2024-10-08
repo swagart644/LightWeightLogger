@@ -2,11 +2,16 @@ using System.Text;
 
 namespace LightWeightLogger;
 
-public class Logger {
+public class Logger : ILogger {
     private readonly string _fileName;
 
     public Logger(string logname, string path)
     {
+        if (string.IsNullOrEmpty(path)){
+            _fileName = string.Empty;
+            return;
+        }
+
         if (!path.EndsWith("\\"))
             path += "\\";
 
