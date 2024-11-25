@@ -52,6 +52,11 @@ public class Logger : ILogger {
         var buffer = new ReadOnlySpan<byte>(Encoding.ASCII.GetBytes($"{message}\r\n"));
         var fileMode = File.Exists(_fileName) ? FileMode.Append : FileMode.Create;
 
+        var folder = Path.GetDirectoryName(_fileName);
+
+        if (Directory.Exists(folder))
+            Directory.CreateDirectory(folder);
+
         using var fs = new FileStream(_fileName, fileMode, FileAccess.Write, FileShare.ReadWrite);
         fs.Write(buffer);
     }
